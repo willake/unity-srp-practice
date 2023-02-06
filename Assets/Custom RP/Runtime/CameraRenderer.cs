@@ -6,6 +6,7 @@ namespace WillakeD.CustomRP
     public class CameraRenderer
     {
         const string BUFFER_NAME = "Render Camera";
+        static ShaderTagId UNLIT_SHADER_TAG_ID = new ShaderTagId("SRPDefaultUnlit");
 
         ScriptableRenderContext _context;
         Camera _camera;
@@ -65,6 +66,18 @@ namespace WillakeD.CustomRP
 
         void DrawVisibleGeometry()
         {
+            var sortingSettings = new SortingSettings(_camera)
+            {
+                criteria = SortingCriteria.CommonOpaque
+            };
+            var drawingSettings = new DrawingSettings(
+                UNLIT_SHADER_TAG_ID, sortingSettings
+            );
+            var filteringSettings = new FilteringSettings(RenderQueueRange.all);
+
+            _context.DrawRenderers(
+                _cullingResults, ref drawingSettings, ref filteringSettings
+            );
             _context.DrawSkybox(_camera);
         }
     }
