@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Profiling;
 
 namespace WillakeD.CustomRP
 {
@@ -72,10 +73,12 @@ namespace WillakeD.CustomRP
 
         partial void PrepareBuffer()
         {
+            Profiler.BeginSample("Editor Only");
             _buffer.name = SampleName = _camera.name;
+            Profiler.EndSample();
         }
 #else
-	    const string SampleName = BUFFER_NAME;
+	    string SampleName => BUFFER_NAME;
 #endif
     }
 }
