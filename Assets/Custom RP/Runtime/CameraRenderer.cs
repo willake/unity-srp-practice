@@ -27,9 +27,10 @@ namespace WillakeD.CustomRP
 
         void Setup()
         {
+            _context.SetupCameraProperties(_camera);
+            _buffer.ClearRenderTarget(true, true, Color.clear);
             _buffer.BeginSample(BUFFER_NAME);
             ExecuteBuffer();
-            _context.SetupCameraProperties(_camera);
         }
 
         void Submit()
