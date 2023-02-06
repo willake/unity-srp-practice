@@ -73,12 +73,20 @@ namespace WillakeD.CustomRP
             var drawingSettings = new DrawingSettings(
                 UNLIT_SHADER_TAG_ID, sortingSettings
             );
-            var filteringSettings = new FilteringSettings(RenderQueueRange.all);
+            var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
             _context.DrawRenderers(
                 _cullingResults, ref drawingSettings, ref filteringSettings
             );
             _context.DrawSkybox(_camera);
+
+            sortingSettings.criteria = SortingCriteria.CommonTransparent;
+            drawingSettings.sortingSettings = sortingSettings;
+            filteringSettings.renderQueueRange = RenderQueueRange.transparent;
+
+            _context.DrawRenderers(
+                _cullingResults, ref drawingSettings, ref filteringSettings
+            );
         }
     }
 }
