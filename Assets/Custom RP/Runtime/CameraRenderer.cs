@@ -10,7 +10,7 @@ namespace WillakeD.CustomRP
         ScriptableRenderContext _context;
         Camera _camera;
 
-        CommandBuffer buffer = new CommandBuffer
+        CommandBuffer _buffer = new CommandBuffer
         {
             name = BUFFER_NAME
         };
@@ -25,19 +25,29 @@ namespace WillakeD.CustomRP
             Submit();
         }
 
-        void DrawVisibleGeometry()
+        void Setup()
         {
-            _context.DrawSkybox(_camera);
+            _buffer.BeginSample(BUFFER_NAME);
+            ExecuteBuffer();
+            _context.SetupCameraProperties(_camera);
         }
 
         void Submit()
         {
+            _buffer.EndSample(BUFFER_NAME);
+            ExecuteBuffer();
             _context.Submit();
         }
 
-        void Setup()
+        void ExecuteBuffer()
         {
-            _context.SetupCameraProperties(_camera);
+            _context.ExecuteCommandBuffer(_buffer);
+            _buffer.Clear();
+        }
+
+        void DrawVisibleGeometry()
+        {
+            _context.DrawSkybox(_camera);
         }
     }
 }
