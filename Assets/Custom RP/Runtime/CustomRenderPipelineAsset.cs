@@ -10,7 +10,7 @@ namespace WillakeD.CustomRP
     {
         protected override RenderPipeline CreatePipeline()
         {
-            return null;
+            return new CustomRenderPipeline();
         }
     }
 }
