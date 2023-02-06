@@ -15,6 +15,7 @@ namespace WillakeD.CustomRP
             new ShaderTagId("VertexLMRGBM"),
             new ShaderTagId("VertexLM")
         };
+        static Material errorMaterial;
 
         ScriptableRenderContext _context;
         Camera _camera;
@@ -75,13 +76,24 @@ namespace WillakeD.CustomRP
 
         void DrawUnsupportedShaders()
         {
+            if (errorMaterial == null)
+            {
+                errorMaterial =
+                    new Material(Shader.Find("Hidden/InternalErrorShader"));
+            }
+
             var drawingSettings = new DrawingSettings(
                 legacyShaderTagIds[0], new SortingSettings(_camera)
-            );
+            )
+            {
+                overrideMaterial = errorMaterial
+            };
+
             for (int i = 1; i < legacyShaderTagIds.Length; i++)
             {
                 drawingSettings.SetShaderPassName(i, legacyShaderTagIds[i]);
             }
+
             var filteringSettings = FilteringSettings.defaultValue;
             _context.DrawRenderers(
                 _cullingResults, ref drawingSettings, ref filteringSettings
