@@ -13,6 +13,19 @@ namespace WillakeD.CustomRP
         {
             this.context = context;
             this.camera = camera;
+
+            DrawVisibleGeometry();
+            Submit();
+        }
+
+        void DrawVisibleGeometry()
+        {
+            context.DrawSkybox(camera);
+        }
+
+        void Submit()
+        {
+            context.Submit();
         }
     }
 }
