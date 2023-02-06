@@ -23,6 +23,7 @@ namespace WillakeD.CustomRP
             this._context = context;
             this._camera = camera;
 
+            PrepareBuffer();
             PrepareForSceneWindow();
             if (!Cull())
             {
@@ -40,13 +41,13 @@ namespace WillakeD.CustomRP
         {
             _context.SetupCameraProperties(_camera);
             _buffer.ClearRenderTarget(true, true, Color.clear);
-            _buffer.BeginSample(BUFFER_NAME);
+            _buffer.BeginSample(SampleName);
             ExecuteBuffer();
         }
 
         void Submit()
         {
-            _buffer.EndSample(BUFFER_NAME);
+            _buffer.EndSample(SampleName);
             ExecuteBuffer();
             _context.Submit();
         }

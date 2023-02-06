@@ -8,6 +8,7 @@ namespace WillakeD.CustomRP
 {
     public partial class CameraRenderer : MonoBehaviour
     {
+        partial void PrepareBuffer();
         partial void PrepareForSceneWindow();
         partial void DrawGizmos();
         partial void DrawUnsupportedShaders();
@@ -67,6 +68,14 @@ namespace WillakeD.CustomRP
             );
         }
 
+        string SampleName { get; set; }
+
+        partial void PrepareBuffer()
+        {
+            _buffer.name = SampleName = _camera.name;
+        }
+#else
+	    const string SampleName = BUFFER_NAME;
 #endif
     }
 }
