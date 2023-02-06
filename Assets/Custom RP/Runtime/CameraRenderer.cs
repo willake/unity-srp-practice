@@ -3,19 +3,10 @@ using UnityEngine.Rendering;
 
 namespace WillakeD.CustomRP
 {
-    public class CameraRenderer
+    public partial class CameraRenderer
     {
         const string BUFFER_NAME = "Render Camera";
         static ShaderTagId unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
-        static ShaderTagId[] legacyShaderTagIds = {
-            new ShaderTagId("Always"),
-            new ShaderTagId("ForwardBase"),
-            new ShaderTagId("PrepassBase"),
-            new ShaderTagId("Vertex"),
-            new ShaderTagId("VertexLMRGBM"),
-            new ShaderTagId("VertexLM")
-        };
-        static Material errorMaterial;
 
         ScriptableRenderContext _context;
         Camera _camera;
@@ -39,6 +30,7 @@ namespace WillakeD.CustomRP
 
             Setup();
             DrawUnsupportedShaders();
+            DrawGizmos();
             DrawVisibleGeometry();
             Submit();
         }
@@ -72,32 +64,6 @@ namespace WillakeD.CustomRP
                 return true;
             }
             return false;
-        }
-
-        void DrawUnsupportedShaders()
-        {
-            if (errorMaterial == null)
-            {
-                errorMaterial =
-                    new Material(Shader.Find("Hidden/InternalErrorShader"));
-            }
-
-            var drawingSettings = new DrawingSettings(
-                legacyShaderTagIds[0], new SortingSettings(_camera)
-            )
-            {
-                overrideMaterial = errorMaterial
-            };
-
-            for (int i = 1; i < legacyShaderTagIds.Length; i++)
-            {
-                drawingSettings.SetShaderPassName(i, legacyShaderTagIds[i]);
-            }
-
-            var filteringSettings = FilteringSettings.defaultValue;
-            _context.DrawRenderers(
-                _cullingResults, ref drawingSettings, ref filteringSettings
-            );
         }
 
         void DrawVisibleGeometry()
