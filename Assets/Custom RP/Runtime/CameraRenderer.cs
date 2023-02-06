@@ -23,6 +23,7 @@ namespace WillakeD.CustomRP
             this._context = context;
             this._camera = camera;
 
+            PrepareForSceneWindow();
             if (!Cull())
             {
                 return;

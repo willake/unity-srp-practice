@@ -8,6 +8,7 @@ namespace WillakeD.CustomRP
 {
     public partial class CameraRenderer : MonoBehaviour
     {
+        partial void PrepareForSceneWindow();
         partial void DrawGizmos();
         partial void DrawUnsupportedShaders();
 #if UNITY_EDITOR
@@ -22,6 +23,14 @@ namespace WillakeD.CustomRP
         };
 
         static Material errorMaterial;
+
+        partial void PrepareForSceneWindow()
+        {
+            if (_camera.cameraType == CameraType.SceneView)
+            {
+                ScriptableRenderContext.EmitWorldGeometryForSceneView(_camera);
+            }
+        }
 
         partial void DrawGizmos()
         {
