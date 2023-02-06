@@ -7,7 +7,7 @@ namespace WillakeD.CustomRP
 {
     public class CustomRenderPipeline : RenderPipeline
     {
-        CameraRenderer renderer = new CameraRenderer();
+        CameraRenderer _renderer = new CameraRenderer();
 
         protected override void Render(
             ScriptableRenderContext context, Camera[] cameras
@@ -15,7 +15,7 @@ namespace WillakeD.CustomRP
         {
             foreach (Camera camera in cameras)
             {
-                renderer.Render(context, camera);
+                _renderer.Render(context, camera);
             }
         }
     }

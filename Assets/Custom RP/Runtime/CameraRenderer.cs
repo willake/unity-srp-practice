@@ -5,14 +5,20 @@ namespace WillakeD.CustomRP
 {
     public class CameraRenderer
     {
-        ScriptableRenderContext context;
+        const string BUFFER_NAME = "Render Camera";
 
-        Camera camera;
+        ScriptableRenderContext _context;
+        Camera _camera;
+
+        CommandBuffer buffer = new CommandBuffer
+        {
+            name = BUFFER_NAME
+        };
 
         public void Render(ScriptableRenderContext context, Camera camera)
         {
-            this.context = context;
-            this.camera = camera;
+            this._context = context;
+            this._camera = camera;
 
             Setup();
             DrawVisibleGeometry();
@@ -21,17 +27,17 @@ namespace WillakeD.CustomRP
 
         void DrawVisibleGeometry()
         {
-            context.DrawSkybox(camera);
+            _context.DrawSkybox(_camera);
         }
 
         void Submit()
         {
-            context.Submit();
+            _context.Submit();
         }
 
         void Setup()
         {
-            context.SetupCameraProperties(camera);
+            _context.SetupCameraProperties(_camera);
         }
     }
 }
