@@ -6,7 +6,15 @@ namespace WillakeD.CustomRP
     public class CameraRenderer
     {
         const string BUFFER_NAME = "Render Camera";
-        static ShaderTagId UNLIT_SHADER_TAG_ID = new ShaderTagId("SRPDefaultUnlit");
+        static ShaderTagId unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
+        static ShaderTagId[] legacyShaderTagIds = {
+            new ShaderTagId("Always"),
+            new ShaderTagId("ForwardBase"),
+            new ShaderTagId("PrepassBase"),
+            new ShaderTagId("Vertex"),
+            new ShaderTagId("VertexLMRGBM"),
+            new ShaderTagId("VertexLM")
+        };
 
         ScriptableRenderContext _context;
         Camera _camera;
@@ -29,6 +37,7 @@ namespace WillakeD.CustomRP
             }
 
             Setup();
+            DrawUnsupportedShaders();
             DrawVisibleGeometry();
             Submit();
         }
@@ -64,6 +73,21 @@ namespace WillakeD.CustomRP
             return false;
         }
 
+        void DrawUnsupportedShaders()
+        {
+            var drawingSettings = new DrawingSettings(
+                legacyShaderTagIds[0], new SortingSettings(_camera)
+            );
+            for (int i = 1; i < legacyShaderTagIds.Length; i++)
+            {
+                drawingSettings.SetShaderPassName(i, legacyShaderTagIds[i]);
+            }
+            var filteringSettings = FilteringSettings.defaultValue;
+            _context.DrawRenderers(
+                _cullingResults, ref drawingSettings, ref filteringSettings
+            );
+        }
+
         void DrawVisibleGeometry()
         {
             var sortingSettings = new SortingSettings(_camera)
@@ -71,7 +95,7 @@ namespace WillakeD.CustomRP
                 criteria = SortingCriteria.CommonOpaque
             };
             var drawingSettings = new DrawingSettings(
-                UNLIT_SHADER_TAG_ID, sortingSettings
+                unlitShaderTagId, sortingSettings
             );
             var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
