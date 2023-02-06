@@ -15,10 +15,17 @@ namespace WillakeD.CustomRP
             name = BUFFER_NAME
         };
 
+        CullingResults _cullingResults;
+
         public void Render(ScriptableRenderContext context, Camera camera)
         {
             this._context = context;
             this._camera = camera;
+
+            if (!Cull())
+            {
+                return;
+            }
 
             Setup();
             DrawVisibleGeometry();
@@ -44,6 +51,16 @@ namespace WillakeD.CustomRP
         {
             _context.ExecuteCommandBuffer(_buffer);
             _buffer.Clear();
+        }
+
+        bool Cull()
+        {
+            if (_camera.TryGetCullingParameters(out ScriptableCullingParameters p))
+            {
+                _cullingResults = _context.Cull(ref p);
+                return true;
+            }
+            return false;
         }
 
         void DrawVisibleGeometry()
