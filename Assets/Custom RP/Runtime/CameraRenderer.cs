@@ -14,6 +14,7 @@ namespace WillakeD.CustomRP
             this.context = context;
             this.camera = camera;
 
+            Setup();
             DrawVisibleGeometry();
             Submit();
         }
@@ -26,6 +27,11 @@ namespace WillakeD.CustomRP
         void Submit()
         {
             context.Submit();
+        }
+
+        void Setup()
+        {
+            context.SetupCameraProperties(camera);
         }
     }
 }
