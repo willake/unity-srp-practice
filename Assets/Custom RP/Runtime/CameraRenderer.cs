@@ -18,7 +18,8 @@ namespace WillakeD.CustomRP
 
         CullingResults _cullingResults;
 
-        public void Render(ScriptableRenderContext context, Camera camera)
+        public void Render(ScriptableRenderContext context, Camera camera,
+        bool useDynamicBatching, bool useGPUInstancing)
         {
             this._context = context;
             this._camera = camera;
@@ -33,7 +34,7 @@ namespace WillakeD.CustomRP
             Setup();
             DrawUnsupportedShaders();
             DrawGizmos();
-            DrawVisibleGeometry();
+            DrawVisibleGeometry(useDynamicBatching, useGPUInstancing);
             Submit();
         }
 
@@ -73,7 +74,7 @@ namespace WillakeD.CustomRP
             return false;
         }
 
-        void DrawVisibleGeometry()
+        void DrawVisibleGeometry(bool useDynamicBatching, bool useGPUInstancing)
         {
             var sortingSettings = new SortingSettings(_camera)
             {
@@ -81,7 +82,11 @@ namespace WillakeD.CustomRP
             };
             var drawingSettings = new DrawingSettings(
                 unlitShaderTagId, sortingSettings
-            );
+            )
+            {
+                enableDynamicBatching = useDynamicBatching,
+                enableInstancing = useGPUInstancing
+            };
             var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
             _context.DrawRenderers(
