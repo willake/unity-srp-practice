@@ -7,10 +7,15 @@ namespace WillakeD.CustomRP
 {
     public class CustomRenderPipeline : RenderPipeline
     {
+        bool useDynamicBatching, useGPUInstancing;
         CameraRenderer _renderer = new CameraRenderer();
 
-        public CustomRenderPipeline()
+        public CustomRenderPipeline(
+            bool useDynamicBatching, bool useGPUInstancing, bool useSRPBatcher
+        )
         {
+            this.useDynamicBatching = useDynamicBatching;
+            this.useGPUInstancing = useGPUInstancing;
             GraphicsSettings.useScriptableRenderPipelineBatching = true;
         }
 
@@ -20,7 +25,7 @@ namespace WillakeD.CustomRP
         {
             foreach (Camera camera in cameras)
             {
-                _renderer.Render(context, camera);
+                _renderer.Render(context, camera, useDynamicBatching, useGPUInstancing);
             }
         }
     }
