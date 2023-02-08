@@ -9,6 +9,11 @@ namespace WillakeD.CustomRP
     {
         CameraRenderer _renderer = new CameraRenderer();
 
+        public CustomRenderPipeline()
+        {
+            GraphicsSettings.useScriptableRenderPipelineBatching = true;
+        }
+
         protected override void Render(
             ScriptableRenderContext context, Camera[] cameras
         )
