@@ -28,5 +28,15 @@ namespace WillakeD.CustomRP
                 _renderer.Render(context, camera, useDynamicBatching, useGPUInstancing);
             }
         }
+
+        protected override void Render(
+            ScriptableRenderContext context, List<Camera> cameras
+        )
+        {
+            foreach (Camera camera in cameras)
+            {
+                _renderer.Render(context, camera, useDynamicBatching, useGPUInstancing);
+            }
+        }
     }
 }
