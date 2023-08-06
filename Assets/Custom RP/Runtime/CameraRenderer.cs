@@ -7,6 +7,7 @@ namespace WillakeD.CustomRP
     {
         const string BUFFER_NAME = "Render Camera";
         static ShaderTagId unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
+        static ShaderTagId litShaderTagId = new("CustomLit");
 
         ScriptableRenderContext _context;
         Camera _camera;
@@ -87,6 +88,7 @@ namespace WillakeD.CustomRP
                 enableDynamicBatching = useDynamicBatching,
                 enableInstancing = useGPUInstancing
             };
+            drawingSettings.SetShaderPassName(1, litShaderTagId);
             var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
             _context.DrawRenderers(
