@@ -46,6 +46,8 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
+*.log
+
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -84,3 +86,10 @@ crashlytics-build.properties
 /[Aa]ssets/Rewired/Examples/*
 # Ignore all unpacked demos.
 /[Aa]ssets/Rewired/Documentation/*
+
+# For macOS
+.DS_Store
+
+ApiUpdaterCheck.txt
+.vsconfig
+*.dwlt
