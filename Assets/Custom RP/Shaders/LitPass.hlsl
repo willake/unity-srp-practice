@@ -2,6 +2,8 @@
     #define CUSTOM_LIT_PASS_INCLUDED
     
     #include "../ShaderLibrary/Common.hlsl"
+    #include "../ShaderLibrary/Surface.hlsl"
+    #include "../ShaderLibrary/Lighting.hlsl"
     
     TEXTURE2D(_BaseMap);
     SAMPLER(sampler_BaseMap);
@@ -56,7 +58,15 @@
         // base.rgb = input.normalWS;
         // see normal errors
         //base.rgb = abs(length(input.normalWS) - 1.0) * 10.0;
-        base.rgb = normalize(input.normalWS);
-        return base;
+        //base.rgb = normalize(input.normalWS);
+
+        Surface surface;
+        surface.normal = normalize(input.normalWS);
+        surface.color = base.rgb;
+        surface.alpha = base.a;
+
+        float3 color = GetLighting(surface);
+
+        return float4(color, surface.alpha);
     }
 #endif
