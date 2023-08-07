@@ -12,12 +12,14 @@ namespace WillakeD.CustomRP
         ScriptableRenderContext _context;
         Camera _camera;
 
-        CommandBuffer _buffer = new CommandBuffer
+        readonly CommandBuffer _buffer = new()
         {
             name = BUFFER_NAME
         };
 
         CullingResults _cullingResults;
+
+        readonly Lighting lighting = new();
 
         public void Render(ScriptableRenderContext context, Camera camera,
         bool useDynamicBatching, bool useGPUInstancing)
@@ -33,6 +35,7 @@ namespace WillakeD.CustomRP
             }
 
             Setup();
+            lighting.Setup(context);
             DrawUnsupportedShaders();
             DrawGizmos();
             DrawVisibleGeometry(useDynamicBatching, useGPUInstancing);
