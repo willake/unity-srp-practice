@@ -17,6 +17,7 @@ namespace WillakeD.CustomRP
             this.useDynamicBatching = useDynamicBatching;
             this.useGPUInstancing = useGPUInstancing;
             GraphicsSettings.useScriptableRenderPipelineBatching = true;
+            GraphicsSettings.lightsUseLinearIntensity = true;
         }
 
         protected override void Render(

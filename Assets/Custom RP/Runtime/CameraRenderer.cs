@@ -33,9 +33,9 @@ namespace WillakeD.CustomRP
             {
                 return;
             }
-
+            
             Setup();
-            lighting.Setup(context);
+            lighting.Setup(context, _cullingResults);
             DrawUnsupportedShaders();
             DrawGizmos();
             DrawVisibleGeometry(useDynamicBatching, useGPUInstancing);
