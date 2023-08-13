@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &78587504
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: unlit-cube (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6351881710366017366, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -319,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &472535139
 Transform:
   m_ObjectHideFlags: 0
@@ -424,7 +428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &481944960
 Transform:
   m_ObjectHideFlags: 0
@@ -534,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_Name
       value: unlit-cube (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6351881710366017366, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_RootOrder
@@ -997,6 +1005,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: unlit-cube (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6351881710366017366, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -1274,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: unlit-cube (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6351881710366017366, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1452,7 +1468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1874638667
 Transform:
   m_ObjectHideFlags: 0
@@ -1628,6 +1644,10 @@ PrefabInstance:
     - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_Name
       value: unlit-cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351881710366017365, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6351881710366017366, guid: 6d780385a224b044eb951ab31d3a8849, type: 3}
       propertyPath: m_RootOrder
